@@ -1,17 +1,11 @@
-import { useState } from 'react';
-import {
-    KeyboardAvoidingView,
-    Platform,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TextInput,
-    View,
-} from 'react-native';
+import { useMemo, useState } from 'react';
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { PrimaryButton } from '@/components/ui/button';
-import { Campus, MIN_TARGET } from '@/constants/theme';
+import FormField from '@/components/campus/form-field';
+import { PrimaryButton, SecondaryButton } from '@/components/ui/button';
+import { Campus } from '@/constants/theme';
+import { SUMMARY_LIMIT, validateProfile } from '@/lib/validation';
 import type { ProfileDraft, ProfileField } from '@/types/campus';
 
 const EMPTY: ProfileDraft = {
@@ -26,16 +20,45 @@ const EMPTY: ProfileDraft = {
 
 export default function ProfileScreen() {
     const insets = useSafeAreaInsets();
+
     const [draft, setDraft] = useState<ProfileDraft>(EMPTY);
-    const [error, setError] = useState<string | null>(null);
+    const [touched, setTouched] = useState<Partial<Record<ProfileField, boolean>>>({});
+    const [submitted, setSubmitted] = useState(false);
+    const [saving, setSaving] = useState(false);
+    const [saved, setSaved] = useState(false);
+
+    const errors = useMemo(() => validateProfile(draft), [draft]);
+    const errorCount = Object.keys(errors).length;
 
     function update(field: ProfileField, value: string) {
         setDraft((current) => ({ ...current, [field]: value }));
+        setSaved(false);
+    }
+
+    function blur(field: ProfileField) {
+        setTouched((current) => ({ ...current, [field]: true }));
+    }
+
+    function shows(field: ProfileField) {
+        return submitted || Boolean(touched[field]);
     }
 
     function submit() {
-        const invalid = Object.values(draft).some((value) => value.trim().length === 0);
-        setError(invalid ? 'Dữ liệu không hợp lệ' : null);
+        setSubmitted(true);
+        if (errorCount > 0) return;
+
+        setSaving(true);
+        setTimeout(() => {
+            setSaving(false);
+            setSaved(true);
+        }, 800);
+    }
+
+    function reset() {
+        setDraft(EMPTY);
+        setTouched({});
+        setSubmitted(false);
+        setSaved(false);
     }
 
     return (
@@ -51,66 +74,104 @@ export default function ProfileScreen() {
             >
                 <Text style={styles.title}>HỒ SƠ SINH VIÊN</Text>
 
-                <Text style={styles.label}>Họ và tên</Text>
-                <TextInput
-                    style={styles.input}
+                {submitted && errorCount > 0 ? (
+                    <View style={styles.summaryError} accessibilityLiveRegion="assertive">
+                        <Text style={styles.summaryErrorText}>
+                            ⚠ Còn {errorCount} trường cần sửa. Chi tiết ghi ngay dưới từng ô.
+                        </Text>
+                    </View>
+                ) : null}
+
+                {saved ? (
+                    <View style={styles.savedBox} accessibilityLiveRegion="polite">
+                        <Text style={styles.savedText}>✓ Đã lưu hồ sơ thành công.</Text>
+                    </View>
+                ) : null}
+
+                <FormField
+                    label="Họ và tên"
+                    hint="Ghi đúng như trên thẻ sinh viên"
                     value={draft.fullName}
                     onChangeText={(value) => update('fullName', value)}
+                    onBlur={() => blur('fullName')}
+                    error={errors.fullName}
+                    showError={shows('fullName')}
+                    autoComplete="name"
                 />
 
-                <Text style={styles.label}>Mã số sinh viên</Text>
-                <TextInput
-                    style={styles.input}
+                <FormField
+                    label="Mã số sinh viên"
+                    hint="8 chữ số"
                     value={draft.studentId}
                     onChangeText={(value) => update('studentId', value)}
+                    onBlur={() => blur('studentId')}
+                    error={errors.studentId}
+                    showError={shows('studentId')}
                     keyboardType="number-pad"
+                    maxLength={12}
                 />
 
-                <Text style={styles.label}>Email</Text>
-                <TextInput
-                    style={styles.input}
+                <FormField
+                    label="Email"
+                    hint="Dùng email trường cấp"
                     value={draft.email}
                     onChangeText={(value) => update('email', value)}
+                    onBlur={() => blur('email')}
+                    error={errors.email}
+                    showError={shows('email')}
                     keyboardType="email-address"
                     autoCapitalize="none"
+                    autoComplete="email"
                 />
 
-                <Text style={styles.label}>Số điện thoại</Text>
-                <TextInput
-                    style={styles.input}
+                <FormField
+                    label="Số điện thoại"
+                    hint="10 chữ số, bắt đầu bằng 0"
                     value={draft.phone}
                     onChangeText={(value) => update('phone', value)}
+                    onBlur={() => blur('phone')}
+                    error={errors.phone}
+                    showError={shows('phone')}
                     keyboardType="phone-pad"
+                    autoComplete="tel"
                 />
 
-                <Text style={styles.label}>Địa chỉ liên hệ</Text>
-                <TextInput
-                    style={styles.input}
+                <FormField
+                    label="Địa chỉ liên hệ"
                     value={draft.address}
                     onChangeText={(value) => update('address', value)}
+                    onBlur={() => blur('address')}
+                    error={errors.address}
+                    showError={shows('address')}
                 />
 
-                <Text style={styles.label}>Ngày sinh</Text>
-                <TextInput
-                    style={styles.input}
+                <FormField
+                    label="Ngày sinh"
+                    hint="Dạng ngày/tháng/năm"
+                    placeholder="dd/mm/yyyy"
                     value={draft.birthDate}
                     onChangeText={(value) => update('birthDate', value)}
-                    placeholder="dd/mm/yyyy"
-                    placeholderTextColor={Campus.textMuted}
+                    onBlur={() => blur('birthDate')}
+                    error={errors.birthDate}
+                    showError={shows('birthDate')}
+                    maxLength={10}
                 />
 
-                <Text style={styles.label}>Giới thiệu bản thân</Text>
-                <TextInput
-                    style={[styles.input, styles.multiline]}
+                <FormField
+                    label="Giới thiệu bản thân"
+                    hint={`Còn ${Math.max(0, SUMMARY_LIMIT - draft.summary.trim().length)} ký tự`}
                     value={draft.summary}
                     onChangeText={(value) => update('summary', value)}
+                    onBlur={() => blur('summary')}
+                    error={errors.summary}
+                    showError={shows('summary')}
+                    style={styles.multiline}
                     multiline
                 />
 
-                {error ? <Text style={styles.error}>{error}</Text> : null}
-
                 <View style={styles.actions}>
-                    <PrimaryButton label="Lưu hồ sơ" onPress={submit} />
+                    <PrimaryButton label="Lưu hồ sơ" onPress={submit} loading={saving} />
+                    <SecondaryButton label="Nhập lại" onPress={reset} />
                 </View>
             </ScrollView>
         </KeyboardAvoidingView>
@@ -126,44 +187,51 @@ const styles = StyleSheet.create({
     content: {
         padding: 20,
         paddingBottom: 40,
-        gap: 8,
+        gap: 16,
     },
 
     title: {
         fontSize: 24,
         fontWeight: 'bold',
         color: Campus.text,
-        marginBottom: 8,
     },
 
-    label: {
+    summaryError: {
+        padding: 12,
+        borderWidth: 1,
+        borderColor: Campus.danger,
+        borderRadius: 8,
+        backgroundColor: '#fdecea',
+    },
+
+    summaryErrorText: {
+        color: Campus.danger,
+        fontSize: 14,
+        lineHeight: 20,
+    },
+
+    savedBox: {
+        padding: 12,
+        borderWidth: 1,
+        borderColor: Campus.primary,
+        borderRadius: 8,
+        backgroundColor: '#e1f0f5',
+    },
+
+    savedText: {
+        color: Campus.primary,
         fontSize: 14,
         fontWeight: '600',
-        color: Campus.text,
-    },
-
-    input: {
-        minHeight: MIN_TARGET,
-        paddingHorizontal: 12,
-        borderWidth: 1,
-        borderColor: Campus.border,
-        borderRadius: 8,
-        color: Campus.text,
-        fontSize: 16,
     },
 
     multiline: {
-        minHeight: 80,
+        minHeight: 96,
         paddingTop: 12,
         textAlignVertical: 'top',
     },
 
-    error: {
-        color: Campus.danger,
-        fontSize: 14,
-    },
-
     actions: {
+        gap: 12,
         marginTop: 8,
     },
 });
