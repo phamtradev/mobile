@@ -1,10 +1,10 @@
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import CourseCard from '@/components/campus/course-card';
 import StudentCard from '@/components/campus/student-card';
 import { announcements, courses, student } from '@/data/campus';
 
-/** Composition root: the only place that knows where the data comes from. */
 export default function CampusDashboard() {
     const insets = useSafeAreaInsets();
 
@@ -21,7 +21,7 @@ export default function CampusDashboard() {
                 <Text style={styles.sectionTitle}>KHÓA HỌC</Text>
 
                 {courses.map((course) => (
-                    <Text key={course.id}>{course.title}</Text>
+                    <CourseCard key={course.id} course={course} />
                 ))}
             </View>
 

@@ -8,9 +8,44 @@ export const student: Student = {
 };
 
 export const courses: Course[] = [
-    { id: 'c-mobile', title: 'Lập trình Mobile', lecturer: 'TS. Nguyễn Minh Quang' },
-    { id: 'c-db', title: 'Cơ sở dữ liệu', lecturer: 'ThS. Trần Thu Hà' },
-    { id: 'c-ui', title: 'Phát triển giao diện', lecturer: 'ThS. Lê Hoàng Nam' },
+    {
+        id: 'c-mobile',
+        title: 'Lập trình Mobile',
+        lecturer: 'TS. Nguyễn Minh Quang',
+        cover: {
+            source: require('@/assets/images/react-logo.png'),
+            alt: 'Logo React Native',
+        },
+    },
+    {
+        id: 'c-db',
+        title: 'Cơ sở dữ liệu',
+        lecturer: 'ThS. Trần Thu Hà',
+        cover: {
+            source: 'https://picsum.photos/seed/database/600/400',
+            alt: 'Phòng máy chủ của trung tâm dữ liệu',
+        },
+    },
+    {
+        id: 'c-ui',
+        title: 'Phát triển giao diện',
+        lecturer: 'ThS. Lê Hoàng Nam',
+        cover: { source: 'https://picsum.photos/seed/interface/600/400' },
+    },
+    {
+        id: 'c-network',
+        title: 'Mạng máy tính',
+        lecturer: 'TS. Vũ Đình Phong',
+        cover: {
+            source: 'https://smart-campus.invalid/khong-ton-tai.jpg',
+            alt: 'Sơ đồ hạ tầng mạng của trường',
+        },
+    },
+    {
+        id: 'c-ethics',
+        title: 'Đạo đức nghề nghiệp CNTT',
+        lecturer: 'ThS. Đỗ Thanh Mai',
+    },
 ];
 
 export const announcements: Announcement[] = [

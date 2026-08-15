@@ -1,3 +1,5 @@
+import type { ImageSourcePropType } from 'react-native';
+
 export interface Student {
     fullName: string;
     studentId: string;
@@ -5,15 +7,20 @@ export interface Student {
     cohort: string;
 }
 
+export interface CourseCover {
+    source: ImageSourcePropType | string;
+    alt?: string;
+}
+
 export interface Course {
     id: string;
     title: string;
     lecturer: string;
+    cover?: CourseCover;
 }
 
 export interface Announcement {
     id: string;
     title: string;
-    /** ISO 8601, used to group into Today / This Week / Earlier. */
     publishedAt: string;
 }
