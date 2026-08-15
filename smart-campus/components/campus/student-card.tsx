@@ -7,10 +7,6 @@ interface StudentCardProps {
     student: Student;
 }
 
-/**
- * Takes data through props instead of importing it, so the card can be reused
- * for any student and survives the later switch from mock data to an API.
- */
 export default function StudentCard({ student }: StudentCardProps) {
     return (
         <View style={styles.card}>

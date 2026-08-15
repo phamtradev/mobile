@@ -27,10 +27,6 @@ export const Colors = {
   },
 };
 
-/**
- * SmartCampus palette. Every pair below was checked against WCAG AA (4.5:1)
- * on its intended background during the Ex10 contrast audit.
- */
 export const Campus = {
   background: '#f2f4f5',
   surface: '#ffffff',
@@ -44,7 +40,6 @@ export const Campus = {
   focusRing: '#1a73e8',
 };
 
-/** Android and iOS minimum recommended touch target. */
 export const MIN_TARGET = 48;
 
 export const Fonts = Platform.select({
