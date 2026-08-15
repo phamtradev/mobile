@@ -72,7 +72,9 @@ export default function ProfileScreen() {
                 keyboardShouldPersistTaps="handled"
                 keyboardDismissMode="on-drag"
             >
-                <Text style={styles.title}>HỒ SƠ SINH VIÊN</Text>
+                <Text style={styles.title} accessibilityRole="header">
+                    HỒ SƠ SINH VIÊN
+                </Text>
 
                 {submitted && errorCount > 0 ? (
                     <View style={styles.summaryError} accessibilityLiveRegion="assertive">

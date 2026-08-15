@@ -22,7 +22,9 @@ export default function FeedState({
         <View style={styles.container} accessibilityLiveRegion="polite">
             {busy ? <ActivityIndicator size="large" color={Campus.primary} /> : null}
 
-            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.title} accessibilityRole="header">
+                {title}
+            </Text>
             <Text style={styles.description}>{description}</Text>
 
             {actionLabel && onAction ? (

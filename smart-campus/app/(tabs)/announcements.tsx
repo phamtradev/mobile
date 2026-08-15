@@ -43,7 +43,7 @@ export default function AnnouncementsScreen() {
         load();
     }, [load]);
 
-    const source = emptySource ? [] : allAnnouncements;
+    const source = useMemo(() => (emptySource ? [] : allAnnouncements), [emptySource]);
 
     const filtered = useMemo(() => {
         if (!query.trim()) return source;
@@ -62,7 +62,9 @@ export default function AnnouncementsScreen() {
 
     const header = (
         <View style={styles.header}>
-            <Text style={styles.title}>THÔNG BÁO</Text>
+            <Text style={styles.title} accessibilityRole="header">
+                THÔNG BÁO
+            </Text>
 
             <View style={styles.searchRow}>
                 <TextInput

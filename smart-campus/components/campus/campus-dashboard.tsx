@@ -24,7 +24,9 @@ export default function CampusDashboard() {
             contentContainerStyle={[styles.content, { paddingTop: insets.top + 16 }]}
         >
             <View style={styles.headerRow}>
-                <Text style={styles.header}>CAMPUS DASHBOARD</Text>
+                <Text style={styles.header} accessibilityRole="header">
+                    CAMPUS DASHBOARD
+                </Text>
 
                 <View style={styles.headerActions}>
                     <IconButton
@@ -44,13 +46,13 @@ export default function CampusDashboard() {
             <StudentCard student={student} />
 
             <View style={styles.section}>
-                <Text style={styles.sectionTitle}>KHÓA HỌC</Text>
+                <Text style={styles.sectionTitle} accessibilityRole="header">KHÓA HỌC</Text>
 
                 <CourseGrid courses={courses} />
             </View>
 
             <View style={styles.section}>
-                <Text style={styles.sectionTitle}>THÔNG BÁO</Text>
+                <Text style={styles.sectionTitle} accessibilityRole="header">THÔNG BÁO</Text>
 
                 {announcements.map((announcement) => (
                     <Text key={announcement.id}>{announcement.title}</Text>

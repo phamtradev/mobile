@@ -58,7 +58,6 @@ function BaseButton({
                     disabled && styles.labelDisabled,
                     loading && styles.labelHidden,
                 ]}
-                numberOfLines={1}
             >
                 {label}
             </Text>

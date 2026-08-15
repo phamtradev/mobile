@@ -10,7 +10,9 @@ interface StudentCardProps {
 export default function StudentCard({ student }: StudentCardProps) {
     return (
         <View style={styles.card}>
-            <Text style={styles.title}>THÔNG TIN SINH VIÊN</Text>
+            <Text style={styles.title} accessibilityRole="header">
+                THÔNG TIN SINH VIÊN
+            </Text>
 
             <InfoRow label="Họ và tên đầy đủ:" value={student.fullName} emphasized />
             <InfoRow label="Mã số sinh viên:" value={student.studentId} />

@@ -14,7 +14,11 @@ function formatDate(iso: string) {
 
 export default function AnnouncementRow({ item }: { item: Announcement }) {
     return (
-        <View style={styles.row}>
+        <View
+            style={styles.row}
+            accessible
+            accessibilityLabel={`${item.title}. ${item.body} Đăng ${formatDate(item.publishedAt)}.`}
+        >
             <Text style={styles.title}>{item.title}</Text>
             <Text style={styles.body}>{item.body}</Text>
             <Text style={styles.date}>{formatDate(item.publishedAt)}</Text>

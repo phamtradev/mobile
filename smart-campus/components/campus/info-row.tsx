@@ -13,7 +13,11 @@ export default function InfoRow({ label, value, emphasized = false }: InfoRowPro
     const stacked = fontScale > STACK_ABOVE_FONT_SCALE;
 
     return (
-        <View style={[styles.container, stacked ? styles.stacked : styles.row]}>
+        <View
+            style={[styles.container, stacked ? styles.stacked : styles.row]}
+            accessible
+            accessibilityLabel={`${label} ${value}`}
+        >
             <Text style={[styles.label, !stacked && styles.rowLabel]}>{label}</Text>
 
             <Text style={[!stacked && styles.rowValue, emphasized && styles.emphasized]}>

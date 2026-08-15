@@ -64,7 +64,11 @@ export default function CourseCard({ course }: { course: Course }) {
                 )}
             </View>
 
-            <View style={styles.body}>
+            <View
+                style={styles.body}
+                accessible
+                accessibilityLabel={`Khóa học ${course.title}, giảng viên ${course.lecturer}`}
+            >
                 <Text style={styles.title}>{course.title}</Text>
                 <Text style={styles.lecturer}>{course.lecturer}</Text>
             </View>
