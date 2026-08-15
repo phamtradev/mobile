@@ -1,5 +1,6 @@
 import { StyleSheet, View } from 'react-native';
-import CampusDashboard from '../../components/CampusDashboard/CampusDashboard';
+
+import CampusDashboard from '@/components/campus/campus-dashboard';
 
 export default function HomeScreen() {
   return (

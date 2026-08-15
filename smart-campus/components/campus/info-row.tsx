@@ -6,11 +6,7 @@ interface InfoRowProps {
     emphasized?: boolean;
 }
 
-export default function InfoRow({
-    label,
-    value,
-    emphasized = false,
-}: InfoRowProps) {
+export default function InfoRow({ label, value, emphasized = false }: InfoRowProps) {
     return (
         <View style={styles.container}>
             <Text style={styles.label}>{label}</Text>

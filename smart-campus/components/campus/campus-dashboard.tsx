@@ -1,7 +1,10 @@
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import StudentCard from '../StudentCard/StudentCard';
 
+import StudentCard from '@/components/campus/student-card';
+import { announcements, courses, student } from '@/data/campus';
+
+/** Composition root: the only place that knows where the data comes from. */
 export default function CampusDashboard() {
     const insets = useSafeAreaInsets();
 
@@ -10,38 +13,29 @@ export default function CampusDashboard() {
             style={styles.screen}
             contentContainerStyle={[styles.content, { paddingTop: insets.top + 16 }]}
         >
+            <Text style={styles.header}>CAMPUS DASHBOARD</Text>
 
-            <Text style={styles.header}>
-                CAMPUS DASHBOARD
-            </Text>
-
-            <StudentCard />
+            <StudentCard student={student} />
 
             <View style={styles.section}>
-                <Text style={styles.sectionTitle}>
-                    KHÓA HỌC
-                </Text>
+                <Text style={styles.sectionTitle}>KHÓA HỌC</Text>
 
-                <Text>Lập trình Mobile</Text>
-                <Text>Cơ sở dữ liệu</Text>
-                <Text>Phát triển giao diện</Text>
+                {courses.map((course) => (
+                    <Text key={course.id}>{course.title}</Text>
+                ))}
             </View>
 
             <View style={styles.section}>
-                <Text style={styles.sectionTitle}>
-                    THÔNG BÁO
-                </Text>
+                <Text style={styles.sectionTitle}>THÔNG BÁO</Text>
 
-                <Text>Thông báo học phí học kỳ mới</Text>
-                <Text>Lịch thi cuối kỳ</Text>
+                {announcements.map((announcement) => (
+                    <Text key={announcement.id}>{announcement.title}</Text>
+                ))}
             </View>
 
             <Pressable style={styles.button}>
-                <Text style={styles.buttonText}>
-                    Xem tất cả thông báo
-                </Text>
+                <Text style={styles.buttonText}>Xem tất cả thông báo</Text>
             </Pressable>
-
         </ScrollView>
     );
 }
