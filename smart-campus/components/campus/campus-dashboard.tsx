@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import CourseCard from '@/components/campus/course-card';
+import CourseGrid from '@/components/campus/course-grid';
 import StudentCard from '@/components/campus/student-card';
 import { IconButton, PrimaryButton, SecondaryButton } from '@/components/ui/button';
 import { Campus } from '@/constants/theme';
@@ -46,9 +46,7 @@ export default function CampusDashboard() {
             <View style={styles.section}>
                 <Text style={styles.sectionTitle}>KHÓA HỌC</Text>
 
-                {courses.map((course) => (
-                    <CourseCard key={course.id} course={course} />
-                ))}
+                <CourseGrid courses={courses} />
             </View>
 
             <View style={styles.section}>
