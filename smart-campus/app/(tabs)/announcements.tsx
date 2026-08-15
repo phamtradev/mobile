@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
     FlatList,
+    SectionList,
     StyleSheet,
     Text,
     TextInput,
+    useWindowDimensions,
     View,
     type ListRenderItem,
 } from 'react-native';
@@ -14,6 +16,7 @@ import FeedState from '@/components/campus/feed-state';
 import { IconButton, SecondaryButton } from '@/components/ui/button';
 import { Campus, MIN_TARGET } from '@/constants/theme';
 import { announcements as allAnnouncements } from '@/data/campus';
+import { groupAnnouncements } from '@/lib/announcement-groups';
 import type { Announcement } from '@/types/campus';
 
 type FeedStatus = 'loading' | 'error' | 'ready';
@@ -24,10 +27,12 @@ function normalize(value: string) {
 
 export default function AnnouncementsScreen() {
     const insets = useSafeAreaInsets();
+    const { fontScale } = useWindowDimensions();
 
     const [status, setStatus] = useState<FeedStatus>('loading');
     const [emptySource, setEmptySource] = useState(false);
     const [query, setQuery] = useState('');
+    const [grouped, setGrouped] = useState(false);
 
     const load = useCallback((mode: 'ok' | 'fail' = 'ok') => {
         setStatus('loading');
@@ -45,6 +50,8 @@ export default function AnnouncementsScreen() {
         const needle = normalize(query.trim());
         return source.filter((item) => normalize(`${item.title} ${item.body}`).includes(needle));
     }, [source, query]);
+
+    const sections = useMemo(() => groupAnnouncements(filtered), [filtered]);
 
     const renderItem: ListRenderItem<Announcement> = useCallback(
         ({ item }) => <AnnouncementRow item={item} />,
@@ -75,6 +82,11 @@ export default function AnnouncementsScreen() {
                     />
                 ) : null}
             </View>
+
+            <SecondaryButton
+                label={grouped ? 'Đang nhóm theo thời gian' : 'Danh sách phẳng'}
+                onPress={() => setGrouped((on) => !on)}
+            />
 
             <View style={styles.simulateRow}>
                 <Text style={styles.simulateLabel}>Giả lập:</Text>
@@ -124,10 +136,32 @@ export default function AnnouncementsScreen() {
         );
     }
 
+    const padding = { paddingTop: insets.top + 8, paddingBottom: insets.bottom + 24 };
+
+    if (grouped) {
+        return (
+            <SectionList
+                style={styles.screen}
+                contentContainerStyle={padding}
+                sections={status === 'ready' ? sections : []}
+                keyExtractor={keyExtractor}
+                renderItem={renderItem}
+                renderSectionHeader={({ section }) => (
+                    <Text style={styles.sectionHeader}>{section.title}</Text>
+                )}
+                ItemSeparatorComponent={Separator}
+                ListHeaderComponent={header}
+                ListFooterComponent={footer}
+                ListEmptyComponent={empty}
+                stickySectionHeadersEnabled={fontScale <= 1.3}
+            />
+        );
+    }
+
     return (
         <FlatList
             style={styles.screen}
-            contentContainerStyle={{ paddingTop: insets.top + 8, paddingBottom: insets.bottom + 24 }}
+            contentContainerStyle={padding}
             data={status === 'ready' ? filtered : []}
             keyExtractor={keyExtractor}
             renderItem={renderItem}
@@ -193,6 +227,16 @@ const styles = StyleSheet.create({
 
     chip: {
         paddingHorizontal: 14,
+    },
+
+    sectionHeader: {
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        fontSize: 13,
+        fontWeight: '700',
+        color: Campus.textMuted,
+        backgroundColor: Campus.background,
+        textTransform: 'uppercase',
     },
 
     separator: {
