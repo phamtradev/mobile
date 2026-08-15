@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
  * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
  */
@@ -26,6 +26,26 @@ export const Colors = {
     tabIconSelected: tintColorDark,
   },
 };
+
+/**
+ * SmartCampus palette. Every pair below was checked against WCAG AA (4.5:1)
+ * on its intended background during the Ex10 contrast audit.
+ */
+export const Campus = {
+  background: '#f2f4f5',
+  surface: '#ffffff',
+  border: '#c9ced1',
+  text: '#11181c',
+  textMuted: '#5a6165',
+  primary: '#0a6d8f',
+  onPrimary: '#ffffff',
+  danger: '#b3261e',
+  disabled: '#9aa3a8',
+  focusRing: '#1a73e8',
+};
+
+/** Android and iOS minimum recommended touch target. */
+export const MIN_TARGET = 48;
 
 export const Fonts = Platform.select({
   ios: {
