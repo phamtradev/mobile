@@ -16,10 +16,10 @@ export default function StudentCard({ student }: StudentCardProps) {
         <View style={styles.card}>
             <Text style={styles.title}>THÔNG TIN SINH VIÊN</Text>
 
-            <InfoRow label="Họ tên:" value={student.fullName} emphasized />
-            <InfoRow label="Mã SV:" value={student.studentId} />
-            <InfoRow label="Ngành học:" value={student.major} />
-            <InfoRow label="Niên khóa:" value={student.cohort} />
+            <InfoRow label="Họ và tên đầy đủ:" value={student.fullName} emphasized />
+            <InfoRow label="Mã số sinh viên:" value={student.studentId} />
+            <InfoRow label="Ngành đào tạo:" value={student.major} />
+            <InfoRow label="Khóa đào tạo:" value={student.cohort} />
         </View>
     );
 }
