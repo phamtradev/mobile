@@ -19,6 +19,18 @@ export interface Course {
     cover?: CourseCover;
 }
 
+export interface ProfileDraft {
+    fullName: string;
+    studentId: string;
+    email: string;
+    phone: string;
+    address: string;
+    birthDate: string;
+    summary: string;
+}
+
+export type ProfileField = keyof ProfileDraft;
+
 export interface Announcement {
     id: string;
     title: string;
