@@ -9,7 +9,7 @@ const HTML_PATH = path.join(__dirname, 'code-snapshot.html');
 const FILES = [
   {
     file: 'src/app/index.tsx',
-    badge: 'Entry point (thay App.tsx trong dự án Expo Router)',
+    badge: 'Menu: entry point (thay App.tsx)',
     out: '04-code-entry-index.png',
   },
   {
@@ -36,6 +36,56 @@ const FILES = [
     file: 'src/components/courses/course-list-header.tsx',
     badge: '#7 ListHeaderComponent',
     out: '09-code-course-list-header.png',
+  },
+  {
+    file: 'src/components/students/student-directory-screen.tsx',
+    badge: '#1 #2 #3 #5 #8 #9 #10 #11 #12',
+    out: '15-code-student-directory-screen.png',
+  },
+  {
+    file: 'src/components/students/student-row.tsx',
+    badge: '#4 StudentRow',
+    out: '16-code-student-row.png',
+  },
+  {
+    file: 'src/utils/get-initials.ts',
+    badge: '#4 getInitials',
+    out: '17-code-get-initials.png',
+  },
+  {
+    file: 'src/components/students/search-field.tsx',
+    badge: '#6 TextInput tim kiem',
+    out: '18-code-search-field-students.png',
+  },
+  {
+    file: 'src/utils/filter-student-sections.ts',
+    badge: '#7 #8 Loc + an section rong',
+    out: '19-code-filter-student-sections.png',
+  },
+  {
+    file: 'src/components/students/section-header.tsx',
+    badge: '#3 renderSectionHeader',
+    out: '20-code-section-header.png',
+  },
+  {
+    file: 'src/components/students/student-list-header.tsx',
+    badge: '#6 #9 ListHeaderComponent',
+    out: '21-code-student-list-header.png',
+  },
+  {
+    file: 'src/components/students/empty-state.tsx',
+    badge: '#10 ListEmptyComponent',
+    out: '22-code-empty-state-students.png',
+  },
+  {
+    file: 'src/app/courses.tsx',
+    badge: 'Route /courses',
+    out: '23-code-route-courses.png',
+  },
+  {
+    file: 'src/app/students.tsx',
+    badge: 'Route /students',
+    out: '24-code-route-students.png',
   },
 ];
 

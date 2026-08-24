@@ -77,3 +77,8 @@ export const Brand = {
   surface: '#EDF3FC',
   surfaceBorder: '#DCE6F7',
 } as const;
+
+export const StatusColors = {
+  active: { text: '#0F7B3C', background: '#DFF6E7', border: '#B6E7C9' },
+  paused: { text: '#8A5A00', background: '#FFF1D6', border: '#F3DBA0' },
+} as const;
