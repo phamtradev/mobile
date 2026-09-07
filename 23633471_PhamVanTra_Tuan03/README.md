@@ -37,3 +37,11 @@ Công tắc kết nối giả lập, effect chạy lại theo `isConnected` đ�
 
 ![Bài 3 - useContext](docs/screenshots/03-usecontext.png)
 
+## Bài 4 — useReducer: Form đăng nhập
+
+Một reducer quản lý email, mật khẩu, lỗi và trạng thái `isSubmitting`; kiểm tra email có `@`, mật khẩu tối thiểu sáu ký tự và có nút đặt lại.
+
+| Báo lỗi | Đăng nhập thành công |
+| --- | --- |
+| ![Bài 4 - báo lỗi](docs/screenshots/04-usereducer-error.png) | ![Bài 4 - thành công](docs/screenshots/04-usereducer-success.png) |
+
