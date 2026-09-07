@@ -31,3 +31,9 @@ Công tắc kết nối giả lập, effect chạy lại theo `isConnected` đ�
 | --- | --- |
 | ![Bài 2 - ngắt kết nối](docs/screenshots/02-useeffect-off.png) | ![Bài 2 - đã kết nối](docs/screenshots/02-useeffect-on.png) |
 
+## Bài 3 — useContext: Chia sẻ thông tin người dùng
+
+`UserContext` tách sang tệp riêng, cung cấp tên, email, ảnh đại diện và hàm đăng nhập/đăng xuất cho `ProfileScreen` mà không truyền props.
+
+![Bài 3 - useContext](docs/screenshots/03-usecontext.png)
+
