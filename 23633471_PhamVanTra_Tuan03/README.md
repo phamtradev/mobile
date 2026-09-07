@@ -17,3 +17,9 @@ npm run typecheck  # kiểm tra TypeScript
 
 ![Menu bài tập](docs/screenshots/00-menu.png)
 
+## Bài 1 — useState: Form nhập họ tên
+
+Nhập họ tên để hiển thị lời chào, thêm trạng thái tuổi (cảnh báo khi dưới 18) và nút xóa toàn bộ dữ liệu.
+
+![Bài 1 - useState](docs/screenshots/01-usestate.png)
+
