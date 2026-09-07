@@ -45,3 +45,9 @@ Một reducer quản lý email, mật khẩu, lỗi và trạng thái `isSubmitt
 | --- | --- |
 | ![Bài 4 - báo lỗi](docs/screenshots/04-usereducer-error.png) | ![Bài 4 - thành công](docs/screenshots/04-usereducer-success.png) |
 
+## Bài 5 — useMemo và useCallback: Tìm kiếm và tính tổng sản phẩm
+
+Lọc theo tên, giới hạn giá tối đa, sắp xếp giá tăng/giảm dần bằng `useMemo`; hàm chọn sản phẩm giữ nguyên tham chiếu bằng `useCallback` và `ProductItem` được bọc `React.memo`.
+
+![Bài 5 - useMemo và useCallback](docs/screenshots/05-usememo.png)
+
