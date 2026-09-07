@@ -23,3 +23,11 @@ Nhập họ tên để hiển thị lời chào, thêm trạng thái tuổi (c�
 
 ![Bài 1 - useState](docs/screenshots/01-usestate.png)
 
+## Bài 2 — useEffect: Theo dõi trạng thái kết nối
+
+Công tắc kết nối giả lập, effect chạy lại theo `isConnected` để đổi thông báo, đổi màu chữ và ghi lại thời điểm kết nối gần nhất.
+
+| Ngắt kết nối | Đã kết nối |
+| --- | --- |
+| ![Bài 2 - ngắt kết nối](docs/screenshots/02-useeffect-off.png) | ![Bài 2 - đã kết nối](docs/screenshots/02-useeffect-on.png) |
+
