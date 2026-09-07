@@ -51,3 +51,10 @@ Lọc theo tên, giới hạn giá tối đa, sắp xếp giá tăng/giảm dầ
 
 ![Bài 5 - useMemo và useCallback](docs/screenshots/05-usememo.png)
 
+## Bài 6 — Bài tập tổng hợp: Quản lý công việc cá nhân
+
+Thêm, hoàn thành, xóa, lọc công việc theo từ khóa, đếm số việc chưa hoàn thành và chuyển giao diện sáng/tối. Dùng đủ sáu Hook: `useState`, `useEffect`, `useContext`, `useReducer`, `useMemo`, `useCallback`.
+
+| Giao diện sáng | Giao diện tối |
+| --- | --- |
+| ![Bài 6 - giao diện sáng](docs/screenshots/06-todo-light.png) | ![Bài 6 - giao diện tối](docs/screenshots/06-todo-dark.png) |
