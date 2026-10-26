@@ -1,0 +1,40 @@
+{
+  "books": [
+    {
+      "id": "1",
+      "title": "Đắc Nhân Tâm",
+      "author": "Dale Carnegie",
+      "views": 150,
+      "image": "https://picsum.photos",
+      "avatar": "https://pravatar.cc"
+    },
+    {
+      "id": "2",
+      "title": "Nhà Giả Kim",
+      "author": "Paulo Coelho",
+      "views": 320,
+      "image": "https://picsum.photos",
+      "avatar": "https://pravatar.cc"
+    }
+  ],
+   "comments": [
+    {
+      "id": "1",
+      "text": "Cuốn sách thay đổi cuộc đời mình!",
+      "bookId": "1"
+    },
+    {
+      "id": "2",
+      "text": "Rất đáng đọc, nội dung sâu sắc.",
+      "bookId": "1"
+    }
+  ],
+  "users": [
+    {
+      "name": "Nguyen Van A",
+      "email": "a@example.com",
+      "id": "q3RFD4_n-kU"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
