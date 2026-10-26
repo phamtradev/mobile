@@ -2,39 +2,73 @@
   "books": [
     {
       "id": "1",
-      "title": "Đắc Nhân Tâm",
-      "author": "Dale Carnegie",
-      "views": 150,
-      "image": "https://picsum.photos",
-      "avatar": "https://pravatar.cc"
-    },
-    {
-      "id": "2",
-      "title": "Nhà Giả Kim",
+      "title": "Nhà giả kim",
       "author": "Paulo Coelho",
       "views": 320,
-      "image": "https://picsum.photos",
-      "avatar": "https://pravatar.cc"
-    }
-  ],
-   "comments": [
-    {
-      "id": "1",
-      "text": "Cuốn sách thay đổi cuộc đời mình!",
-      "bookId": "1"
+      "image": "https://picsum.photos/seed/nhagiakim/240/340",
+      "avatar": "https://i.pravatar.cc/100?img=12"
     },
     {
       "id": "2",
-      "text": "Rất đáng đọc, nội dung sâu sắc.",
-      "bookId": "1"
-    }
-  ],
-  "users": [
+      "title": "Đắc nhân tâm",
+      "author": "Dale Carnegie",
+      "views": 150,
+      "image": "https://picsum.photos/seed/dacnhantam/240/340",
+      "avatar": "https://i.pravatar.cc/100?img=32"
+    },
     {
-      "name": "Nguyen Van A",
-      "email": "a@example.com",
-      "id": "q3RFD4_n-kU"
+      "id": "3",
+      "title": "Tuổi trẻ đáng giá bao nhiêu",
+      "author": "Rosie Nguyễn",
+      "views": 274,
+      "image": "https://picsum.photos/seed/tuoitre/240/340",
+      "avatar": "https://i.pravatar.cc/100?img=45"
+    },
+    {
+      "id": "4",
+      "title": "Mắt biếc",
+      "author": "Nguyễn Nhật Ánh",
+      "views": 410,
+      "image": "https://picsum.photos/seed/matbiec/240/340",
+      "avatar": "https://i.pravatar.cc/100?img=56"
     }
   ],
-  "$schema": "./node_modules/json-server/schema.json"
+  "comments": [
+    {
+      "id": "1",
+      "bookId": "1",
+      "userName": "Minh Anh",
+      "rating": 5,
+      "text": "Đọc một mạch hết trong buổi tối, câu chuyện rất dễ thấm."
+    },
+    {
+      "id": "2",
+      "bookId": "1",
+      "userName": "Quốc Bảo",
+      "rating": 4,
+      "text": "Giọng văn nhẹ nhàng, hợp đọc lúc cần động lực."
+    },
+    {
+      "id": "3",
+      "bookId": "2",
+      "userName": "Thu Hà",
+      "rating": 5,
+      "text": "Ví dụ cụ thể, áp dụng được ngay vào chỗ làm."
+    },
+    {
+      "id": "4",
+      "bookId": "3",
+      "userName": "Gia Huy",
+      "rating": 4,
+      "text": "Gần gũi, đọc xong muốn lập kế hoạch lại cho bản thân."
+    },
+    {
+      "id": "5",
+      "bookId": "4",
+      "userName": "Lan Chi",
+      "rating": 5,
+      "text": "Buồn nhưng đẹp, đọc lại lần nào cũng thấy tiếc cho Ngạn."
+    }
+  ],
+  "users": []
 }

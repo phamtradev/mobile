@@ -1,23 +1,25 @@
-import { Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
+import { Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 
-import { AuthProvider } from "@/store/auth-store";
+import { AuthProvider } from '@/store/auth-store';
 
 export default function RootLayout() {
-  return (
-    <AuthProvider>
-      <StatusBar style="dark" />
-      <Stack
-        screenOptions={{
-          headerShadowVisible: false,
-          headerStyle: { backgroundColor: "#f8fafc" },
-          contentStyle: { backgroundColor: "#f8fafc" },
-        }}>
-        <Stack.Screen name="index" options={{ title: "Book nook" }} />
-        <Stack.Screen name="login" options={{ title: "Welcome" }} />
-        <Stack.Screen name="checkout" options={{ title: "Checkout" }} />
-        <Stack.Screen name="books/[id]" options={{ title: "Book details" }} />
-      </Stack>
-    </AuthProvider>
-  );
+    return (
+        <AuthProvider>
+            <StatusBar style="light" />
+            <Stack
+                screenOptions={{
+                    headerStyle: { backgroundColor: '#1e3a8a' },
+                    headerTintColor: '#ffffff',
+                    headerTitleStyle: { fontWeight: '700' },
+                    headerShadowVisible: false,
+                    contentStyle: { backgroundColor: '#f8fafc' },
+                }}>
+                <Stack.Screen name="index" options={{ title: 'BookStore' }} />
+                <Stack.Screen name="login" options={{ title: 'Tài khoản' }} />
+                <Stack.Screen name="checkout" options={{ title: 'Thanh toán' }} />
+                <Stack.Screen name="books/[id]" options={{ title: 'Chi tiết sách' }} />
+            </Stack>
+        </AuthProvider>
+    );
 }

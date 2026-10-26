@@ -8,11 +8,11 @@ import {
   useState,
 } from "react";
 
-import { authService } from "@/services/auth-service";
+import { authService } from "@/services/auth.service";
 import { User } from "@/types";
 
-const AUTH_KEY = "@bookstore/auth";
-type PersistedAuth = { token: string; user: User; expiresAt: string };
+export const AUTH_KEY = "@bookstore/auth";
+export type PersistedAuth = { accessToken: string; user: User};
 type AuthContextValue = {
   user: User | null;
   token: string | null;
@@ -36,9 +36,8 @@ export function AuthProvider({ children }: PropsWithChildren) {
         if (!saved) return;
         const parsed = JSON.parse(saved) as PersistedAuth;
         if (
-          parsed.token &&
-          parsed.user &&
-          new Date(parsed.expiresAt) > new Date()
+          parsed.accessToken &&
+          parsed.user
         )
           setAuth(parsed);
         else await AsyncStorage.removeItem(AUTH_KEY);
@@ -57,9 +56,9 @@ export function AuthProvider({ children }: PropsWithChildren) {
   const value = useMemo<AuthContextValue>(
     () => ({
       user: auth?.user ?? null,
-      token: auth?.token ?? null,
+      token: auth?.accessToken ?? null,
       isHydrating,
-      isLoggedIn: Boolean(auth?.token),
+      isLoggedIn: Boolean(auth?.accessToken),
       login: async (email, password) =>
         save(await authService.login(email, password)),
       register: async (name, email, password) =>

@@ -1,21 +1,22 @@
 export type User = {
-  id: string;
-  name: string;
-  email: string;
+    id: string;
+    name: string;
+    email: string;
 };
 
-export type Review = {
-  id: string;
-  userName: string;
-  rating: number;
-  comment: string;
+export type Comment = {
+    id: string;
+    bookId: string;
+    userName: string;
+    rating: number;
+    text: string;
 };
 
-export type Book = {
-  id: string;
-  title: string;
-  author: string;
-  category: string;
-  description: string;
-  reviews: Review[];
+export type BookResponse = {
+    id: string;
+    title: string;
+    author: string;
+    views: number;
+    image: string;
+    avatar: string;
 };
